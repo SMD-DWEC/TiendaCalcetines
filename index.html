@@ -10,10 +10,30 @@
   </head>
   <body>
     <div id="app">
-      <h1>Product goes here</h1>
-    </div>
 
+      <div class="cart">{{unidades}} unidades</div>
+
+      <h1>{{producto}}</h1>
+      <p>{{descripcion}}</p>
+      <p v-if="stock > 5">Disponible</p>
+      <p v-else-if="stock > 0">¡Últimas unidades!</p>
+      <p v-else>No Disponible</p>
+
+      <p v-if="enOferta">¡¡En oferta!!</p>
+
+      <div class="product-image">
+        <a :href=url><img :src=imagen></a>
+      </div>
+      <ul>
+        <li v-for="detalle, i in detalles">{{ i + ": " + detalle}}</li>
+      </ul>
+
+      <div v-for="modelo in modelos" :key="modelo.cod" @mouseover="actualizarImagen(modelo.imagen)">{{ modelo.color }}</div>
+
+      <button class="button" @click="aniadirCarro">Comprar</button>
+    
+    </div>
     <!-- Import Js -->
-    <script src="./main.js"></script>
+    <script src="./app.js"></script>
   </body>
 </html>
