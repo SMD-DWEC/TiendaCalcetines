@@ -11,29 +11,15 @@
   <body>
     <div id="app">
 
-      <div class="cart">{{unidades}} unidades</div>
+      <p v-if="enVenta">{{producto }} está en venta</p>
 
-      <h1>{{producto}}</h1>
-      <p>{{descripcion}}</p>
-      <p v-if="stock > 5">Disponible</p>
-      <p v-else-if="stock > 0">¡Últimas unidades!</p>
-      <p v-else>No Disponible</p>
+      
 
-      <p v-if="enOferta">¡¡En oferta!!</p>
-
-      <div class="product-image">
-        <a :href=url><img :src=imagen></a>
-      </div>
-      <ul>
-        <li v-for="detalle, i in detalles">{{ i + ": " + detalle}}</li>
-      </ul>
-
-      <div v-for="modelo in modelos" :key="modelo.cod" @mouseover="actualizarImagen(modelo.imagen)">{{ modelo.color }}</div>
-
-      <button class="button" @click="aniadirCarro">Comprar</button>
-    
+      <vista-productos :premium="premium" @aniadir-al-carro="actualizarCarro"></vista-productos>
+      
     </div>
     <!-- Import Js -->
     <script src="./app.js"></script>
+    <script src="./components/vistaProductos.js"></script>
   </body>
 </html>
