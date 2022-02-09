@@ -9,12 +9,18 @@ const app = Vue.createApp({
         }
     },
     methods: {
+        /**
+         * 
+         * @param {Boolean} estado Si es verdadero, añadimos al carrito, si es false, borramos la última.
+         * @param {Number} id 
+         */
         actualizarCarro(id) {
-            console.log(id);
             this.carrito.push(id);
+        },
+        borrarCarrito(){
+            this.carrito.pop()
         }
     }
-   
 });
 
 

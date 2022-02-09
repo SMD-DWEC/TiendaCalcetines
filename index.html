@@ -12,7 +12,7 @@
     <div id="app">
       
       <div class="cart">{{carrito.length}} unidades</div>
-      <button class="button" @click="aniadirCarro(false)">Quitar del carrito</button>
+      <button class="button" @click="borrarCarrito">Quitar del carrito</button>
 
       <p v-if="enVenta">{{producto }} está en venta</p>
 

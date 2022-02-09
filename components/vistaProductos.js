@@ -38,12 +38,12 @@ app.component("vista-productos", {
               :style="{ backgroundColor: modelo.color }"
             ></div>
       
-            <button class="button" :class="{disabledButton: enStock<=0}" :disabled="enStock <=0" @click="aniadirCarro(true)">Comprar</button>
+            <button class="button" :class="{disabledButton: enStock<=0}" :disabled="enStock <=0" @click="aniadirCarro">Comprar</button>
           </div>
         </div>
     </div>
     
-    <lista-puntuaciones :puntuaciones="resenias"></lista-puntuaciones>
+    <lista-puntuaciones v-if="resenias.length > 0" :puntuaciones="resenias"></lista-puntuaciones>
     <puntuar-producto @producto-puntuado="dejaResenia"></puntuar-producto>
 
     `,
@@ -65,7 +65,7 @@ app.component("vista-productos", {
     },
     methods: {
         //Añadimos unidades al carrito...
-        aniadirCarro(estado) {
+        aniadirCarro() {
             this.$emit("aniadir-al-carro",this.modelos[this.varianteSeleccionada].cod);
             /*estado ? this.unidades++ : this.unidades--;
 

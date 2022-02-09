@@ -19,6 +19,13 @@ app.component("puntuar-producto", {
             <option>1</option>
         </select>
 
+        <br />
+        <label for="recomendar">¿Recomendarias este producto?</label>
+        <select id="recomendar" v-model.number="recomendado">
+            <option>Sí</option>
+            <option>No</option>
+        </select>
+
         <input class="button" type="submit" value="Enviar">
         
 
@@ -28,15 +35,23 @@ app.component("puntuar-producto", {
         return {
             nombre: "",
             comentario: "",
-            puntuacion: null
+            puntuacion: null,
+            recomendado: null
         }
     },
     methods: {
         alEnviar() {
+            //Comprobamos que no haya campos vacios...
+            if(this.nombre == "" || this.comentario == "" || this.puntuacion == null || this.recomendado == null) {
+                alert("Hay algunos campos incompletos...");
+                return;
+            }
+
             let reviewProducto = {
                 nombre: this.nombre,
                 comentario: this.comentario,
-                puntuacion: this.puntuacion
+                puntuacion: this.puntuacion,
+                recomendado: this.recomendado,
             }
             this.$emit("producto-puntuado", reviewProducto);
 
@@ -44,7 +59,9 @@ app.component("puntuar-producto", {
             //Al enviar reseteamos los campos...
             this.nombre = "",
             this.comentario = "",
-            this.puntuacion = null
+            this.puntuacion = null,
+            this.recomendado = null
+            
         }
     }
 

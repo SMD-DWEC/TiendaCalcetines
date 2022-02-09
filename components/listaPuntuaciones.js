@@ -10,10 +10,12 @@ app.component("lista-puntuaciones", {
         <div class="review-container">
             <h3>Puntuaciones</h3>
             <ul>
-                <li v-for="review,index in reviews" :key="index">
-                    ¡{{review.nombre}} dejó una puntuación de {{review.puntuacion}} estrellas!
+                <li v-for="(puntuacion,index) in puntuaciones" :key="index">
+                    ¡{{puntuacion.nombre}} dejó una puntuación de {{puntuacion.puntuacion}} estrellas!
                     <br>
-                    {{review.comentario}}
+                    {{puntuacion.comentario}}
+                    <br>
+                    Producto recomendado: {{puntuacion.recomendado}}
                 </li>
             </ul>
         </div>
