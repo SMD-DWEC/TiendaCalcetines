@@ -3,14 +3,15 @@ const product = 'Calcetines'
 const app = Vue.createApp({
     data() {//Datos que recibe la aplicación de Vue
         return { 
-            unidades: 0,
-            detalles: "Fabricado en Taiwan 70%",
+            carrito: [],
+            detalles: "Fabricado en Taiwan al 70%",
             premium: true
         }
     },
     methods: {
-        actualizarCarro() {
-            this.unidades++;
+        actualizarCarro(id) {
+            console.log(id);
+            this.carrito.push(id);
         }
     }
    

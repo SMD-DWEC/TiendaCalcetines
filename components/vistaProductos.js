@@ -7,8 +7,7 @@ app.component("vista-productos", {
     },
     template: 
     /*html*/`
-    <div class="cart">{{unidades}} unidades</div>
-      <button class="button" @click="aniadirCarro(false)">Quitar del carrito</button>
+
 
     <div class="product-display">
         <div class="product-container">
@@ -42,7 +41,12 @@ app.component("vista-productos", {
             <button class="button" :class="{disabledButton: enStock<=0}" :disabled="enStock <=0" @click="aniadirCarro(true)">Comprar</button>
           </div>
         </div>
-    </div>`,
+    </div>
+    
+    <lista-puntuaciones :puntuaciones="resenias"></lista-puntuaciones>
+    <puntuar-producto @producto-puntuado="dejaResenia"></puntuar-producto>
+
+    `,
     data() {//Datos que recibe la aplicación de Vue
         return { 
             producto: 'Calcetines',
@@ -55,14 +59,14 @@ app.component("vista-productos", {
                 {cod: "A124", color: "blue", imagen: "assets/images/socks_blue.jpg", cantidad: 0}
             ],
             varianteSeleccionada: 0,
-            unidades: 0,
-            enVenta: true
+            enVenta: true,
+            resenias: []
         }
     },
     methods: {
         //Añadimos unidades al carrito...
         aniadirCarro(estado) {
-            this.$emit("aniadir-al-carro");
+            this.$emit("aniadir-al-carro",this.modelos[this.varianteSeleccionada].cod);
             /*estado ? this.unidades++ : this.unidades--;
 
             //Evitamos que se pueda retirar menos de 0...
@@ -70,6 +74,10 @@ app.component("vista-productos", {
         },
         actualizarVariante(index) {
             this.varianteSeleccionada = index;
+        },
+        dejaResenia(resenia) {
+            console.log(resenia);
+            this.resenias.push(resenia);
         }
     },
     computed: {

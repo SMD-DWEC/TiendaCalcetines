@@ -10,6 +10,9 @@
   </head>
   <body>
     <div id="app">
+      
+      <div class="cart">{{carrito.length}} unidades</div>
+      <button class="button" @click="aniadirCarro(false)">Quitar del carrito</button>
 
       <p v-if="enVenta">{{producto }} está en venta</p>
 
@@ -21,5 +24,7 @@
     <!-- Import Js -->
     <script src="./app.js"></script>
     <script src="./components/vistaProductos.js"></script>
+    <script src="./components/puntuarProducto.js"></script>
+    <script src="./components/listaPuntuaciones.js"></script>
   </body>
 </html>
